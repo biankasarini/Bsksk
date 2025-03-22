@@ -1,0 +1,18 @@
+on: push
+
+jobs:
+  backfill-commits:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Repeat Backfill
+      uses: bcanseco/github-contribution-graph-action@v2
+      with:
+        run_times: 1 # Tentukan berapa kali kamu ingin mengulangi proses backfill
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GIT_EMAIL: vaguepfohlz1@outlook.com # replace me
+        MAX_DAYS: 365
+        MIN_COMMITS_PER_DAY: 4
+        MAX_COMMITS_PER_DAY: 5
